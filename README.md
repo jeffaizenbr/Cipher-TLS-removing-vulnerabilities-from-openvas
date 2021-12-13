@@ -99,3 +99,10 @@ PORT    STATE SERVICE
 ```
 If no 3DES ciphers are returned like in the listing above, you should be good to rerun your vulnerability scan!
 
+## implement cipher on kubernetes
+
+vim /etc/kubernetes/manifests/kube-apiserver.yaml
+```bash
+- --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+- --tls-min-version=VersionTLS12
+```
