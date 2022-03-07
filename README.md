@@ -106,3 +106,20 @@ vim /etc/kubernetes/manifests/kube-apiserver.yaml
 - --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 - --tls-min-version=VersionTLS12
 ```
+
+## If you need to edit e deployment 
+
+
+
+```bash
+kubectl edit deployment metrics-server  -n kube-system
+```
+Paste the line bellow, afte the line " - --kubelet-insecure-tls"
+```bash
+- --tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+- --tls-min-version=VersionTLS12
+```
+
+```bash
+kubectl logs -f metrics-server-7b87557888-ckhr6 -n kube-system
+```
