@@ -123,3 +123,17 @@ Paste the line bellow, afte the line " - --kubelet-insecure-tls"
 ```bash
 kubectl logs -f metrics-server-7b87557888-ckhr6 -n kube-system
 ```
+
+
+## Implement Cipher on SSH, (Weak Key Exchange)
+
+edit the sshd configuration file:
+```bash
+vim /etc/ssh/sshd_config
+```
+
+```bash
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+```
