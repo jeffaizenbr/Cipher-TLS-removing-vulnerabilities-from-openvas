@@ -142,3 +142,19 @@ Restart the ssh service
 ```bash
 systemctl restart sshd
 ```
+
+vim /etc/sysconfig/sshd
+
+```bash
+CRYPTO_POLICY=
+```
+
+test
+```bash
+ssh -vv -oCiphers=3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc root@IP SERVER
+```
+
+Result OK
+```bash
+Unable to negotiate with 177.153.231.11 port 22: no matching cipher found. Their offer: chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+```
