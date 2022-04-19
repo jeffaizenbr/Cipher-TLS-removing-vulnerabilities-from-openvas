@@ -153,6 +153,10 @@ test
 ```bash
 ssh -vv -oCiphers=3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc root@IP SERVER
 ```
+OR
+```bash
+sshd -T | grep kex
+```
 
 Result OK
 ```bash
