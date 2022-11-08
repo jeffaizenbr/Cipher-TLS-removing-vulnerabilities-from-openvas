@@ -1,3 +1,35 @@
+# Remove cipher from Rocky Linux and RHEL 8 
+
+## List Policy
+```bash
+update-crypto-policies --show
+```
+## Create sub policy to disable CBC
+```bash
+ vim /etc/crypto-policies/policies/modules/DISABLE-CBC.pmod
+```
+## Removing CBC
+
+```bash
+tls_cipher = -AES-256-CBC -AES-128-CBC
+cipher = -AES-128-CBC -AES-256-CBC -CAMELLIA-256-CBC -CAMELLIA-128-CBC
+ssh_cipher = -AES-128-CBC -AES-256-CBC
+```
+## set sub policy as default
+```bash
+sudo update-crypto-policies --set DEFAULT:DISABLE-CBC
+```
+
+## Check policies
+```bash
+sudo update-crypto-policies --show 
+```
+check negociation of CBC
+```bash
+ssh -vv -oCiphers=aes128-cbc,aes256-cbc 127.0.0.1 
+```
+
+
 # Cipher-TLS-removing-vulnerabilities-from-openvas
 Cipher TLS removing vulnerabilities from openvas
 
